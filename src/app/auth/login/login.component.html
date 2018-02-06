@@ -1,0 +1,21 @@
+<div class="col-md-4 col-md-offset-4">
+    <h1>Login</h1>
+    <hr>
+    <form [formGroup]="loginForm" autocomplete="off" novalidate (ngSubmit)="login()">
+        <div class="form-group">
+            <label for="username">User Name:</label>
+            <em *ngIf="!validateUsername() || (mouseOverLogin && !validateUsername())">Required</em>
+            <input formControlName="username" id="username" type="text" class="form-control" placeholder="User Name..." required [ngClass]="{'error':!validateUsername()}" />
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <em *ngIf="!validatePassword()|| (mouseOverLogin && !validateUsername())">Required</em>
+            <input formControlName="password" id="password" type="password" class="form-control" placeholder="Password..." required [ngClass]="{'error': !validatePassword()}" />
+        </div>
+        <span (mouseover)="mouseOverLogin = true" (mouseleave)="mouseOverLogin = false">
+            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+        </span>
+    </form>
+    <br/>
+    <div *ngIf="loginInvalid" class="alert alert-danger">Invalid credentials.</div>
+</div>

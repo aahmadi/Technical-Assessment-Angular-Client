@@ -1,0 +1,11 @@
+.clickable {
+    cursor: pointer
+}
+
+.table-header {
+    background-color: lightsteelblue
+}
+
+.table-footer {
+    background-color: lightgrey
+}

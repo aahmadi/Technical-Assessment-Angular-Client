@@ -1,0 +1,63 @@
+<div class="col-md-8 col-md-offset-2">
+    <table class="table  table-hover">
+        <thead>
+            <tr class="table-header">
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Title</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor=" let employee of employees" (click)="loadPlansFor(employee)" class="clickable">
+                <td>{{employee.firstName}}</td>
+                <td>{{employee.lastName}}</td>
+                <td>{{employee.title}}</td>
+                <td>{{employee.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+    <div *ngIf="!selectEmployee">
+        <span class="col-md-8 col-md-offset-2">Select an employee to see their plans</span>
+    </div>
+
+    <div *ngIf="!!selectEmployee">
+        <div class="col-md-8 col-md-offset-2">
+            <span style="font-weight: bold">{{selectEmployee.firstName}} {{selectEmployee.lastName}}: {{selectEmployee.title}}</span>
+            <select class="form-control" [(ngModel)]="selectYear" (change)="onYearSelected($event.target.value)" style="float:right;max-width:70px">
+            <option *ngFor="let y of years">{{y}}</option>
+          </select>
+        </div>
+        <table class="col-md-8 col-md-offset-2">
+            <thead>
+                <tr class="table-header">
+                    <th>Project Name</th>
+                    <!-- <th>Year</th> -->
+                    <th>Q1</th>
+                    <th>Q2</th>
+                    <th>Q3</th>
+                    <th>Q4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor=" let plan of selectedEmployeeSelectedYearPlans">
+                    <td>{{plan.projectName}}</td>
+                    <!-- <td>{{plan.year}}</td> -->
+                    <td>{{plan.q1}}</td>
+                    <td>{{plan.q2}}</td>
+                    <td>{{plan.q3}}</td>
+                    <td>{{plan.q4}}</td>
+                </tr>
+                <tr class="table-footer">
+                    <td style="text-align:right;padding-right:10px">Total:</td>
+                    <td>{{sums[0]}}</td>
+                    <td>{{sums[1]}}</td>
+                    <td>{{sums[2]}}</td>
+                    <td>{{sums[3]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
